@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1>Percentage Calculator</h1>
+
+  <p>Enter your numbers:</p>
+
+  <input type="number" id="number" placeholder="Number">
+  <br><br>
+
+  <input type="number" id="percent" placeholder="Percentage">
+  <br><br>
+
+  <button onclick="calculate()">Calculate</button>
+
+  <h2 id="result"></h2>
+
+  <script>
+    function calculate() {
+      let number = document.getElementById("number").value;
+      let percent = document.getElementById("percent").value;
+
+      let result = (number * percent) / 100;
+
+      document.getElementById("result").innerText =
+        "Answer: " + result;
+    }
+  </script>
+</body>
+</html>
