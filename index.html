@@ -1,29 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Calculator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Calculator - Percentage Calculator</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f5f9;
+      color: #222;
+    }
+
+    header {
+      background: #2563eb;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 35px auto;
+      padding: 0 15px;
+    }
+
+    .calculator {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+    }
+
+    #result {
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      background: #eef4ff;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Percentage Calculator</h1>
 
-  <p>Enter your numbers:</p>
+  <header>
+    <h1>Easy Calculator</h1>
+    <p>Simple & Free Online Tools</p>
+  </header>
 
-  <input type="number" id="number" placeholder="Number">
-  <br><br>
+  <div class="container">
+    <div class="calculator">
 
-  <input type="number" id="percent" placeholder="Percentage">
-  <br><br>
+      <h2>Percentage Calculator</h2>
 
-  <button onclick="calculate()">Calculate</button>
+      <label>Enter Number</label>
+      <input type="number" id="number" placeholder="Example: 500">
 
-  <h2 id="result"></h2>
+      <label>Enter Percentage (%)</label>
+      <input type="number" id="percent" placeholder="Example: 20">
+
+      <button onclick="calculate()">Calculate</button>
+
+      <div id="result">
+        Your answer will appear here
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Easy Calculator
+  </footer>
 
   <script>
     function calculate() {
-      let number = document.getElementById("number").value;
-      let percent = document.getElementById("percent").value;
+      let number = parseFloat(document.getElementById("number").value);
+      let percent = parseFloat(document.getElementById("percent").value);
+
+      if (isNaN(number) || isNaN(percent)) {
+        document.getElementById("result").innerText =
+          "Please enter both numbers.";
+        return;
+      }
 
       let result = (number * percent) / 100;
 
@@ -31,5 +144,6 @@
         "Answer: " + result;
     }
   </script>
+
 </body>
 </html>
