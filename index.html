@@ -1,217 +1,202 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Calculator</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #111827, #2563eb);
-      padding: 20px;
-    }
-
-    .calculator {
-      width: 100%;
-      max-width: 380px;
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 25px;
-      padding: 22px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-    }
-
-    .title {
-      text-align: center;
-      color: white;
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 18px;
-    }
-
-    .display {
-      width: 100%;
-      height: 90px;
-      border: none;
-      outline: none;
-      border-radius: 18px;
-      background: rgba(0,0,0,0.35);
-      color: white;
-      font-size: 34px;
-      text-align: right;
-      padding: 15px;
-      margin-bottom: 18px;
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    button {
-      height: 65px;
-      border: none;
-      border-radius: 17px;
-      font-size: 21px;
-      font-weight: bold;
-      cursor: pointer;
-      background: rgba(255,255,255,0.15);
-      color: white;
-      transition: 0.15s;
-    }
-
-    button:active {
-      transform: scale(0.92);
-    }
-
-    .operator {
-      background: #f59e0b;
-    }
-
-    .clear {
-      background: #ef4444;
-    }
-
-    .equal {
-      background: #22c55e;
-      grid-column: span 2;
-    }
-
-    .zero {
-      grid-column: span 2;
-    }
-
-    .footer {
-      text-align: center;
-      color: rgba(255,255,255,0.7);
-      font-size: 13px;
-      margin-top: 18px;
-    }
-  </style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{
+min-height:100vh;
+background:linear-gradient(135deg,#111827,#2563eb);
+color:white;padding:20px;
+}
+.container{max-width:500px;margin:auto}
+h1{text-align:center;margin:15px 0 20px}
+.card{
+background:rgba(255,255,255,.12);
+padding:20px;border-radius:20px;margin-bottom:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.25)
+}
+input,button,select{
+width:100%;padding:14px;margin-top:10px;
+border:0;border-radius:12px;font-size:16px
+}
+button{background:#22c55e;color:white;font-weight:bold;cursor:pointer}
+.result{
+margin-top:15px;padding:14px;background:rgba(0,0,0,.25);
+border-radius:12px;text-align:center
+}
+.calculator{
+display:grid;grid-template-columns:repeat(4,1fr);gap:10px
+}
+.display{
+grid-column:span 4;background:#111827;color:white;
+text-align:right;font-size:28px
+}
+.calculator button{margin:0;background:rgba(255,255,255,.15)}
+.calculator .op{background:#f59e0b}
+.calculator .clear{background:#ef4444}
+.calculator .equal{background:#22c55e;grid-column:span 2}
+</style>
 </head>
 
 <body>
 
-  <div class="calculator">
+<div class="container">
 
-    <div class="title">Smart Calculator</div>
+<h1>Smart Calculator</h1>
 
-    <input type="text" id="display" class="display" value="0" readonly>
+<!-- Basic Calculator -->
+<div class="card">
+<h2>🧮 Calculator</h2>
 
-    <div class="buttons">
+<input id="display" class="display" value="0" readonly>
 
-      <button class="clear" onclick="clearDisplay()">AC</button>
-      <button onclick="deleteLast()">DEL</button>
-      <button onclick="percentage()">%</button>
-      <button class="operator" onclick="addOperator('/')">÷</button>
+<div class="calculator">
+<button class="clear" onclick="clearCalc()">AC</button>
+<button onclick="delCalc()">DEL</button>
+<button onclick="percentCalc()">%</button>
+<button class="op" onclick="addCalc('/')">÷</button>
 
-      <button onclick="addNumber('7')">7</button>
-      <button onclick="addNumber('8')">8</button>
-      <button onclick="addNumber('9')">9</button>
-      <button class="operator" onclick="addOperator('*')">×</button>
+<button onclick="addCalc('7')">7</button>
+<button onclick="addCalc('8')">8</button>
+<button onclick="addCalc('9')">9</button>
+<button class="op" onclick="addCalc('*')">×</button>
 
-      <button onclick="addNumber('4')">4</button>
-      <button onclick="addNumber('5')">5</button>
-      <button onclick="addNumber('6')">6</button>
-      <button class="operator" onclick="addOperator('-')">−</button>
+<button onclick="addCalc('4')">4</button>
+<button onclick="addCalc('5')">5</button>
+<button onclick="addCalc('6')">6</button>
+<button class="op" onclick="addCalc('-')">−</button>
 
-      <button onclick="addNumber('1')">1</button>
-      <button onclick="addNumber('2')">2</button>
-      <button onclick="addNumber('3')">3</button>
-      <button class="operator" onclick="addOperator('+')">+</button>
+<button onclick="addCalc('1')">1</button>
+<button onclick="addCalc('2')">2</button>
+<button onclick="addCalc('3')">3</button>
+<button class="op" onclick="addCalc('+')">+</button>
 
-      <button class="zero" onclick="addNumber('0')">0</button>
-      <button onclick="addNumber('.')">.</button>
-      <button class="equal" onclick="calculate()">=</button>
+<button onclick="addCalc('0')">0</button>
+<button onclick="addCalc('.')">.</button>
+<button class="equal" onclick="calculate()">=</button>
+</div>
+</div>
 
-    </div>
+<!-- Percentage -->
+<div class="card">
+<h2>📊 Percentage Calculator</h2>
+<input id="percentNumber" type="number" placeholder="Enter number">
+<input id="percentValue" type="number" placeholder="Enter percentage">
+<button onclick="percentage()">Calculate</button>
+<div class="result" id="percentResult">Result will appear here</div>
+</div>
 
-    <div class="footer">
-      Fast • Simple • Mobile Friendly
-    </div>
+<!-- BMI -->
+<div class="card">
+<h2>⚖️ BMI Calculator</h2>
+<input id="weight" type="number" placeholder="Weight in kg">
+<input id="height" type="number" placeholder="Height in cm">
+<button onclick="bmi()">Calculate BMI</button>
+<div class="result" id="bmiResult">Result will appear here</div>
+</div>
 
-  </div>
+<!-- Age -->
+<div class="card">
+<h2>🎂 Age Calculator</h2>
+<input id="birthDate" type="date">
+<button onclick="age()">Calculate Age</button>
+<div class="result" id="ageResult">Result will appear here</div>
+</div>
 
-  <script>
-    const display = document.getElementById("display");
+</div>
 
-    function addNumber(number) {
-      if (display.value === "0" || display.value === "Error") {
-        display.value = number;
-      } else {
-        display.value += number;
-      }
-    }
+<script>
+const display=document.getElementById("display");
 
-    function addOperator(operator) {
-      if (display.value === "Error") {
-        display.value = "0";
-      }
+function addCalc(x){
+if(display.value==="0") display.value=x;
+else display.value+=x;
+}
 
-      const last = display.value.slice(-1);
+function clearCalc(){display.value="0"}
 
-      if (["+", "-", "*", "/"].includes(last)) {
-        display.value = display.value.slice(0, -1) + operator;
-      } else {
-        display.value += operator;
-      }
-    }
+function delCalc(){
+display.value=display.value.length>1?
+display.value.slice(0,-1):"0";
+}
 
-    function clearDisplay() {
-      display.value = "0";
-    }
+function percentCalc(){
+display.value=(parseFloat(display.value)/100).toString();
+}
 
-    function deleteLast() {
-      if (display.value.length <= 1 || display.value === "Error") {
-        display.value = "0";
-      } else {
-        display.value = display.value.slice(0, -1);
-      }
-    }
+function calculate(){
+try{
+if(!/^[0-9+\-*/.]+$/.test(display.value)){
+display.value="Error";return;
+}
+display.value=Function('"use strict";return('+display.value+')')();
+}catch{
+display.value="Error";
+}
+}
 
-    function percentage() {
-      try {
-        display.value = (parseFloat(display.value) / 100).toString();
-      } catch {
-        display.value = "Error";
-      }
-    }
+function percentage(){
+let n=parseFloat(document.getElementById("percentNumber").value);
+let p=parseFloat(document.getElementById("percentValue").value);
 
-    function calculate() {
-      try {
-        const expression = display.value;
+if(isNaN(n)||isNaN(p)){
+document.getElementById("percentResult").innerText="Please enter both values";
+return;
+}
 
-        if (!/^[0-9+\-*/.]+$/.test(expression)) {
-          display.value = "Error";
-          return;
-        }
+document.getElementById("percentResult").innerText=
+p+"% of "+n+" = "+(n*p/100);
+}
 
-        const result = Function('"use strict"; return (' + expression + ')')();
+function bmi(){
+let weight=parseFloat(document.getElementById("weight").value);
+let height=parseFloat(document.getElementById("height").value);
 
-        if (!Number.isFinite(result)) {
-          display.value = "Error";
-        } else {
-          display.value = result;
-        }
+if(isNaN(weight)||isNaN(height)||height<=0){
+document.getElementById("bmiResult").innerText="Please enter valid values";
+return;
+}
 
-      } catch {
-        display.value = "Error";
-      }
-    }
-  </script>
+let h=height/100;
+let value=weight/(h*h);
+
+let category="";
+
+if(value<18.5) category="Underweight";
+else if(value<25) category="Normal";
+else if(value<30) category="Overweight";
+else category="Obesity";
+
+document.getElementById("bmiResult").innerText=
+"BMI: "+value.toFixed(1)+" — "+category;
+}
+
+function age(){
+let birth=new Date(document.getElementById("birthDate").value);
+let today=new Date();
+
+if(isNaN(birth.getTime())){
+document.getElementById("ageResult").innerText="Please select your birth date";
+return;
+}
+
+let years=today.getFullYear()-birth.getFullYear();
+let month=today.getMonth()-birth.getMonth();
+
+if(month<0 || (month===0 && today.getDate()<birth.getDate())){
+years--;
+}
+
+document.getElementById("ageResult").innerText=
+"Your age is "+years+" years";
+}
+</script>
 
 </body>
 </html>
+```
