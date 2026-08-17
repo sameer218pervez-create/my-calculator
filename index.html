@@ -4,58 +4,170 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Calculator</title>
+<meta name="description" content="Smart Calculator - Free online calculators for everyday use.">
+<title>Smart Calculator - Free Online Tools</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}
 body{
-min-height:100vh;
+background:#f4f7fb;
+color:#1f2937;
+line-height:1.6
+}
+header{
 background:linear-gradient(135deg,#111827,#2563eb);
-color:white;padding:20px;
+color:white;
+padding:18px 20px;
+position:sticky;
+top:0;
+z-index:10;
+box-shadow:0 3px 15px rgba(0,0,0,.2)
 }
-.container{max-width:500px;margin:auto}
-h1{text-align:center;margin:15px 0 20px}
+.nav{
+max-width:1000px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px
+}
+.logo{font-size:22px;font-weight:bold}
+nav a{
+color:white;
+text-decoration:none;
+margin-left:15px;
+font-size:14px
+}
+.hero{
+background:linear-gradient(135deg,#111827,#2563eb);
+color:white;
+text-align:center;
+padding:65px 20px
+}
+.hero h1{font-size:38px;margin-bottom:12px}
+.hero p{max-width:650px;margin:auto;opacity:.9}
+.container{max-width:1000px;margin:auto;padding:25px 20px}
+.section-title{text-align:center;margin:20px 0 25px}
+.tools{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px
+}
 .card{
-background:rgba(255,255,255,.12);
-padding:20px;border-radius:20px;margin-bottom:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.25)
+background:white;
+padding:22px;
+border-radius:18px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+margin-bottom:20px
 }
-input,button,select{
-width:100%;padding:14px;margin-top:10px;
-border:0;border-radius:12px;font-size:16px
+.card h2{margin-bottom:12px}
+input{
+width:100%;
+padding:13px;
+border:1px solid #d1d5db;
+border-radius:10px;
+margin:7px 0;
+font-size:16px
 }
-button{background:#22c55e;color:white;font-weight:bold;cursor:pointer}
+button{
+width:100%;
+padding:13px;
+border:0;
+border-radius:10px;
+background:#2563eb;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:8px
+}
+button:hover{opacity:.9}
 .result{
-margin-top:15px;padding:14px;background:rgba(0,0,0,.25);
-border-radius:12px;text-align:center
+margin-top:12px;
+padding:12px;
+background:#eef2ff;
+border-radius:10px;
+text-align:center;
+font-weight:bold
 }
 .calculator{
-display:grid;grid-template-columns:repeat(4,1fr);gap:10px
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px
 }
-.display{
-grid-column:span 4;background:#111827;color:white;
-text-align:right;font-size:28px
+.calculator input{
+grid-column:span 4;
+background:#111827;
+color:white;
+text-align:right;
+font-size:25px;
+height:65px
 }
-.calculator button{margin:0;background:rgba(255,255,255,.15)}
+.calculator button{
+margin:0;
+background:#374151
+}
 .calculator .op{background:#f59e0b}
 .calculator .clear{background:#ef4444}
-.calculator .equal{background:#22c55e;grid-column:span 2}
+.calculator .equal{
+background:#22c55e;
+grid-column:span 2
+}
+.info{
+text-align:center;
+max-width:700px;
+margin:auto
+}
+footer{
+background:#111827;
+color:white;
+text-align:center;
+padding:30px 20px;
+margin-top:30px
+}
+footer a{color:#93c5fd;text-decoration:none}
+@media(max-width:600px){
+.hero h1{font-size:30px}
+nav a{margin-left:7px;font-size:12px}
+}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<header>
+<div class="nav">
+<div class="logo">Smart Calculator</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#tools">Tools</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</header>
 
+<section class="hero" id="home">
 <h1>Smart Calculator</h1>
+<p>
+Free, simple and mobile-friendly online calculators for your everyday needs.
+</p>
+</section>
 
-<!-- Basic Calculator -->
+<div class="container" id="tools">
+
+<h2 class="section-title">Our Free Tools</h2>
+
+<div class="tools">
+
+<!-- Calculator -->
 <div class="card">
-<h2>🧮 Calculator</h2>
-
-<input id="display" class="display" value="0" readonly>
+<h2>🧮 Basic Calculator</h2>
 
 <div class="calculator">
+<input id="display" value="0" readonly>
+
 <button class="clear" onclick="clearCalc()">AC</button>
 <button onclick="delCalc()">DEL</button>
 <button onclick="percentCalc()">%</button>
@@ -96,7 +208,7 @@ text-align:right;font-size:28px
 <h2>⚖️ BMI Calculator</h2>
 <input id="weight" type="number" placeholder="Weight in kg">
 <input id="height" type="number" placeholder="Height in cm">
-<button onclick="bmi()">Calculate BMI</button>
+<button onclick="bmi()">Calculate</button>
 <div class="result" id="bmiResult">Result will appear here</div>
 </div>
 
@@ -104,21 +216,57 @@ text-align:right;font-size:28px
 <div class="card">
 <h2>🎂 Age Calculator</h2>
 <input id="birthDate" type="date">
-<button onclick="age()">Calculate Age</button>
+<button onclick="age()">Calculate</button>
 <div class="result" id="ageResult">Result will appear here</div>
 </div>
 
 </div>
+</div>
+
+<!-- About -->
+<section class="container" id="about">
+<div class="card info">
+<h2>About Smart Calculator</h2>
+<p>
+Smart Calculator is a free online tool website designed to make everyday
+calculations quick and easy. Our goal is to provide simple and useful tools
+that work smoothly on mobile phones, tablets and computers.
+</p>
+</div>
+</section>
+
+<!-- Contact -->
+<section class="container" id="contact">
+<div class="card info">
+<h2>Contact Us</h2>
+<p>
+Have a suggestion or found a problem? You can contact us by email.
+</p>
+<p style="margin-top:10px">
+Email: your-email@example.com
+</p>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Smart Calculator. All rights reserved.</p>
+<p style="margin-top:8px">
+Free tools for everyday calculations.
+</p>
+</footer>
 
 <script>
 const display=document.getElementById("display");
 
 function addCalc(x){
-if(display.value==="0") display.value=x;
+if(display.value==="0"||display.value==="Error")
+display.value=x;
 else display.value+=x;
 }
 
-function clearCalc(){display.value="0"}
+function clearCalc(){
+display.value="0";
+}
 
 function delCalc(){
 display.value=display.value.length>1?
@@ -126,15 +274,18 @@ display.value.slice(0,-1):"0";
 }
 
 function percentCalc(){
-display.value=(parseFloat(display.value)/100).toString();
+let n=parseFloat(display.value);
+if(!isNaN(n)) display.value=n/100;
 }
 
 function calculate(){
 try{
 if(!/^[0-9+\-*/.]+$/.test(display.value)){
-display.value="Error";return;
+display.value="Error";
+return;
 }
-display.value=Function('"use strict";return('+display.value+')')();
+let result=Function('"use strict";return('+display.value+')')();
+display.value=Number.isFinite(result)?result:"Error";
 }catch{
 display.value="Error";
 }
@@ -145,7 +296,8 @@ let n=parseFloat(document.getElementById("percentNumber").value);
 let p=parseFloat(document.getElementById("percentValue").value);
 
 if(isNaN(n)||isNaN(p)){
-document.getElementById("percentResult").innerText="Please enter both values";
+document.getElementById("percentResult").innerText=
+"Please enter both values";
 return;
 }
 
@@ -158,13 +310,13 @@ let weight=parseFloat(document.getElementById("weight").value);
 let height=parseFloat(document.getElementById("height").value);
 
 if(isNaN(weight)||isNaN(height)||height<=0){
-document.getElementById("bmiResult").innerText="Please enter valid values";
+document.getElementById("bmiResult").innerText=
+"Please enter valid values";
 return;
 }
 
 let h=height/100;
 let value=weight/(h*h);
-
 let category="";
 
 if(value<18.5) category="Underweight";
@@ -181,16 +333,16 @@ let birth=new Date(document.getElementById("birthDate").value);
 let today=new Date();
 
 if(isNaN(birth.getTime())){
-document.getElementById("ageResult").innerText="Please select your birth date";
+document.getElementById("ageResult").innerText=
+"Please select your birth date";
 return;
 }
 
 let years=today.getFullYear()-birth.getFullYear();
 let month=today.getMonth()-birth.getMonth();
 
-if(month<0 || (month===0 && today.getDate()<birth.getDate())){
+if(month<0||(month===0&&today.getDate()<birth.getDate()))
 years--;
-}
 
 document.getElementById("ageResult").innerText=
 "Your age is "+years+" years";
@@ -200,3 +352,4 @@ document.getElementById("ageResult").innerText=
 </body>
 </html>
 ```
+  
