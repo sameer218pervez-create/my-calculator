@@ -414,6 +414,27 @@ wordResult.innerText =
   <h3>Do I need to install an app?</h3>
   <p>No. You can use the calculator directly in your web browser.</p>
 </section>
+<script>
+const wordText = document.getElementById("wordText");
+const wordResult = document.getElementById("wordResult");
+
+if (wordText && wordResult) {
+  wordText.addEventListener("input", function () {
+    const text = wordText.value;
+
+    const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+    const characters = text.length;
+    const charactersWithoutSpaces = text.replace(/\s/g, "").length;
+    const sentences = text.trim() === "" ? 0 : (text.match(/[.!?]+/g) || []).length;
+
+    wordResult.innerText =
+      "Words: " + words +
+      " | Characters: " + characters +
+      " | Characters without spaces: " + charactersWithoutSpaces +
+      " | Sentences: " + sentences;
+  });
+}
+</script>
 </body>
 </html>
 ```
