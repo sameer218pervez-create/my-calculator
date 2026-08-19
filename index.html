@@ -233,6 +233,20 @@ Result will appear here
 Result will appear here
 </div>
 </div>
+  <!-- Case Converter -->
+<div class="card">
+<h2>🔤 Case Converter</h2>
+
+<textarea id="caseText"
+placeholder="Type or paste your text here..."
+style="width:100%;height:140px;padding:13px;border:1px solid #d1d5db;border-radius:10px;font-size:16px;resize:vertical;"></textarea>
+
+<button onclick="upperCaseText()">UPPERCASE</button>
+
+<button onclick="lowerCaseText()">lowercase</button>
+
+<button onclick="capitalizeText()">Capitalize Words</button>
+</div>
 <!-- Percentage -->
 <div class="card">
 <h2>📊 Percentage Calculator</h2>
@@ -500,6 +514,26 @@ let days = Math.ceil(difference / (1000 * 60 * 60 * 24));
 
 document.getElementById("daysResult").innerText =
 "Difference: " + days + " days";
+}
+</script>
+<script>
+function upperCaseText(){
+let text = document.getElementById("caseText").value;
+document.getElementById("caseText").value = text.toUpperCase();
+}
+
+function lowerCaseText(){
+let text = document.getElementById("caseText").value;
+document.getElementById("caseText").value = text.toLowerCase();
+}
+
+function capitalizeText(){
+let text = document.getElementById("caseText").value;
+
+document.getElementById("caseText").value =
+text.toLowerCase().replace(/\b\w/g, function(letter){
+return letter.toUpperCase();
+});
 }
 </script>
 </body>
