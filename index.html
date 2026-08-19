@@ -219,6 +219,20 @@ Words: 0 | Characters: 0 | Characters without spaces: 0 | Sentences: 0
 Result will appear here
 </div>
 </div>
+  <!-- Days Calculator -->
+<div class="card">
+<h2>📅 Days Calculator</h2>
+
+<input id="startDate" type="date">
+
+<input id="endDate" type="date">
+
+<button onclick="calculateDays()">Calculate Days</button>
+
+<div class="result" id="daysResult">
+Result will appear here
+</div>
+</div>
 <!-- Percentage -->
 <div class="card">
 <h2>📊 Percentage Calculator</h2>
@@ -468,7 +482,27 @@ document.getElementById("discountResult").innerText =
 "Discount: " + discountAmount.toFixed(2) +
 " | Final Price: " + finalPrice.toFixed(2);
 }
-</script></body>
+</script>
+<script>
+function calculateDays(){
+
+let start = new Date(document.getElementById("startDate").value);
+let end = new Date(document.getElementById("endDate").value);
+
+if(isNaN(start.getTime()) || isNaN(end.getTime())){
+document.getElementById("daysResult").innerText =
+"Please select both dates";
+return;
+}
+
+let difference = Math.abs(end - start);
+let days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+
+document.getElementById("daysResult").innerText =
+"Difference: " + days + " days";
+}
+</script>
+</body>
 </html>
 
   
