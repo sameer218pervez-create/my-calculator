@@ -249,6 +249,25 @@ style="width:100%;height:140px;padding:13px;border:1px solid #d1d5db;border-radi
 
 <button onclick="capitalizeText()">Capitalize Words</button>
 </div>
+  <!-- Unit Converter -->
+<div class="card">
+<h2>📏 Unit Converter</h2>
+
+<input id="unitValue" type="number" placeholder="Enter value">
+
+<select id="unitType">
+<option value="km-mile">Kilometers → Miles</option>
+<option value="mile-km">Miles → Kilometers</option>
+<option value="kg-lb">Kilograms → Pounds</option>
+<option value="lb-kg">Pounds → Kilograms</option>
+</select>
+
+<button onclick="convertUnit()">Convert</button>
+
+<div class="result" id="unitResult">
+Result will appear here
+</div>
+</div>
 <!-- Percentage -->
 <div class="card">
 <h2>📊 Percentage Calculator</h2>
@@ -536,6 +555,42 @@ document.getElementById("caseText").value =
 text.toLowerCase().replace(/\b\w/g, function(letter){
 return letter.toUpperCase();
 });
+}
+</script>
+<script>
+function convertUnit(){
+
+let value = parseFloat(document.getElementById("unitValue").value);
+let type = document.getElementById("unitType").value;
+let result = document.getElementById("unitResult");
+
+if(isNaN(value)){
+result.innerText = "Please enter a value";
+return;
+}
+
+let converted;
+
+if(type === "km-mile"){
+converted = value * 0.621371;
+result.innerText = value + " km = " + converted.toFixed(2) + " miles";
+}
+
+else if(type === "mile-km"){
+converted = value * 1.60934;
+result.innerText = value + " miles = " + converted.toFixed(2) + " km";
+}
+
+else if(type === "kg-lb"){
+converted = value * 2.20462;
+result.innerText = value + " kg = " + converted.toFixed(2) + " pounds";
+}
+
+else if(type === "lb-kg"){
+converted = value * 0.453592;
+result.innerText = value + " pounds = " + converted.toFixed(2) + " kg";
+}
+
 }
 </script>
 </body>
