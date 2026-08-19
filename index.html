@@ -1,4 +1,4 @@
-```html
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -203,6 +203,20 @@ style="width:100%;height:140px;padding:13px;border:1px solid #d1d5db;border-radi
 
 <div class="result" id="wordResult">
 Words: 0 | Characters: 0 | Characters without spaces: 0 | Sentences: 0
+</div>
+</div>
+  <!-- Discount Calculator -->
+<div class="card">
+<h2>💰 Discount Calculator</h2>
+
+<input id="originalPrice" type="number" placeholder="Original price">
+
+<input id="discountPercent" type="number" placeholder="Discount percentage">
+
+<button onclick="discount()">Calculate Discount</button>
+
+<div class="result" id="discountResult">
+Result will appear here
 </div>
 </div>
 <!-- Percentage -->
@@ -435,7 +449,26 @@ if (wordText && wordResult) {
   });
 }
 </script>
-</body>
+<script>
+function discount(){
+
+let price = parseFloat(document.getElementById("originalPrice").value);
+let percent = parseFloat(document.getElementById("discountPercent").value);
+
+if(isNaN(price) || isNaN(percent) || price < 0 || percent < 0 || percent > 100){
+document.getElementById("discountResult").innerText =
+"Please enter valid values";
+return;
+}
+
+let discountAmount = price * percent / 100;
+let finalPrice = price - discountAmount;
+
+document.getElementById("discountResult").innerText =
+"Discount: " + discountAmount.toFixed(2) +
+" | Final Price: " + finalPrice.toFixed(2);
+}
+</script></body>
 </html>
-```
+
   
